@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Padel Mill Cambridge — Coming Soon</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Fraunces:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --green-dark: #1f2d21;
+  --green-mid: #345931;
+  --green-card: #2a3d2a;
+  --lime: #e2f78b;
+  --lime-heading: #e0e88f;
+  --cream: #fef8c7;
+  --cream-dark: #f0eabc;
+  --text-dark: #243123;
+  --text-light: #ffffff;
+  --text-muted: rgba(255,255,255,0.65);
+  --text-muted-dark: rgba(36,49,35,0.55);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--green-dark);
+  color: var(--text-light);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== TOP BANNER ===== */
+.top-banner {
+  background: var(--cream);
+  color: var(--text-dark);
+  padding: 10px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.banner-track {
+  display: inline-block;
+  animation: marquee 25s linear infinite;
+}
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.banner-track span { display: inline-block; padding: 0 48px; }
+.banner-track span::before { content: '\2014'; margin-right: 48px; }
+
+/* ===== NAV ===== */
+nav {
+  background: var(--green-dark);
+  padding: 24px 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky; top: 0; z-index: 100;
+}
+.nav-logo {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--cream);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+.nav-right { display: flex; align-items: center; gap: 8px; }
+.nav-links { display: flex; align-items: center; gap: 28px; margin-left: 24px; }
+.nav-links a {
+  color: var(--cream); text-decoration: none; font-size: 13px;
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--lime); }
+
+/* Buttons */
+.btn-pill {
+  display: inline-block; padding: 14px 28px; border-radius: 100px;
+  font-size: 13px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.03em; text-decoration: none; cursor: pointer;
+  transition: all 0.25s; font-family: 'Montserrat', sans-serif;
+  border: none; line-height: 1;
+}
+.btn-lime { background: var(--lime); color: var(--text-dark); }
+.btn-lime:hover { background: #d6eb7f; }
+.btn-cream { background: var(--cream); color: var(--text-dark); }
+.btn-cream:hover { background: var(--cream-dark); }
+.btn-outline-cream {
+  background: transparent; color: var(--cream);
+  border: 1.5px solid rgba(254,248,199,0.35); padding: 12px 26px;
+}
+.btn-outline-cream:hover { border-color: var(--lime); color: var(--lime); }
+
+/* ===== HERO — TWO CARDS ===== */
+.hero {
+  padding: 0 40px 40px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+}
+.hero-card {
+  border-radius: 20px; overflow: hidden; position: relative;
+  min-height: 75vh; display: flex; flex-direction: column;
+  justify-content: flex-end; padding: 48px;
+  background-size: cover; background-position: center;
+}
+.hero-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(31,45,33,0.85) 0%, rgba(31,45,33,0.3) 50%, rgba(31,45,33,0.15) 100%);
+  border-radius: 20px;
+}
+.hero-card > * { position: relative; z-index: 1; }
+.hero-card .label { font-size: 15px; font-weight: 500; color: var(--text-light); margin-bottom: 12px; }
+.hero-card h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(2.5rem, 4.5vw, 4rem); font-weight: 900;
+  color: var(--lime-heading); text-transform: uppercase;
+  letter-spacing: -0.02em; line-height: 0.95; margin-bottom: 16px;
+}
+.hero-card .address {
+  font-size: 14px; color: var(--text-muted); margin-bottom: 24px;
+  text-decoration: underline; text-underline-offset: 3px;
+}
+.hero-card .btns { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.hero-card .btns .text-link {
+  color: var(--text-light); text-decoration: underline;
+  font-size: 14px; font-weight: 600; text-underline-offset: 3px;
+}
+
+/* ===== OFFERS (dark green) ===== */
+.offers { background: var(--green-dark); padding: 100px 64px; }
+.offers h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 900;
+  text-transform: uppercase; color: var(--lime-heading);
+  letter-spacing: -0.01em; margin-bottom: 16px;
+}
+.offers .subtitle { font-size: 15px; color: var(--text-muted); max-width: 520px; margin-bottom: 56px; line-height: 1.7; }
+.offers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.offer-card { background: var(--green-mid); border-radius: 16px; overflow: hidden; }
+.offer-img { height: 240px; background-size: cover; background-position: center; }
+.offer-body { padding: 32px 28px 40px; }
+.offer-body h3 { font-size: 1.6rem; font-weight: 800; color: var(--lime-heading); margin-bottom: 12px; }
+.offer-body .offer-sub { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.7); margin-bottom: 16px; }
+.offer-body p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.7; }
+
+/* ===== TAGLINE (cream) ===== */
+.tagline {
+  background: var(--cream); padding: 100px 64px;
+  display: flex; align-items: center; gap: 80px; overflow: hidden;
+}
+.tagline-text { flex: 1; }
+.tagline-text h2 {
+  font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 900;
+  color: var(--text-dark); line-height: 0.95; letter-spacing: -0.03em;
+}
+.tagline-text p { margin-top: 24px; font-size: 15px; color: var(--text-muted-dark); max-width: 400px; line-height: 1.7; }
+.tagline-graphic { flex: 1; display: flex; justify-content: center; align-items: center; }
+.geo-art { display: grid; grid-template-columns: repeat(7, 48px); grid-template-rows: repeat(4, 48px); gap: 6px; }
+.geo-dot { width: 48px; height: 48px; border-radius: 50%; }
+.g1 { background: #2d5a2a; }
+.g2 { background: #3d7a3a; }
+.g3 { background: linear-gradient(135deg, #5a9a55, #3d7a3a); }
+.g4 { background: linear-gradient(135deg, #7ab875, #4a8a45); opacity: 0.7; }
+
+/* ===== COURTS / BALL (dark green) ===== */
+.courts-section {
+  background: var(--green-dark); padding: 100px 64px;
+  display: flex; align-items: center; gap: 80px;
+}
+.courts-ball { flex: 1; display: flex; justify-content: center; }
+.ball {
+  width: 340px; height: 340px; border-radius: 50%;
+  background: radial-gradient(ellipse at 38% 35%, #c4d840 0%, #97b01a 35%, #6b8012 75%, #4a5c0e 100%);
+  box-shadow: 15px 25px 50px rgba(0,0,0,0.3), inset -8px -12px 30px rgba(0,0,0,0.2);
+  display: flex; align-items: center; justify-content: center; position: relative;
+}
+.ball::after {
+  content: ''; position: absolute; width: 90%; height: 2px;
+  background: rgba(255,255,255,0.15); top: 50%; border-radius: 50%; transform: rotate(-8deg);
+}
+.ball-text {
+  font-family: 'Fraunces', serif; font-size: 3rem; font-weight: 900;
+  text-transform: uppercase; color: rgba(255,255,255,0.3);
+  text-align: center; line-height: 1; transform: rotate(-10deg); letter-spacing: 0.05em;
+}
+.courts-info { flex: 1; }
+.courts-info h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 900;
+  color: var(--lime-heading); text-transform: uppercase;
+  letter-spacing: -0.01em; line-height: 1; margin-bottom: 20px;
+}
+.courts-info p { font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 28px; max-width: 440px; }
+.courts-info .btns { display: flex; gap: 12px; }
+
+/* ===== TESTIMONIALS ===== */
+.testimonials { background: var(--green-dark); padding: 80px 64px; }
+.testimonials h2 {
+  font-size: clamp(2rem, 4vw, 3rem); font-weight: 900;
+  text-transform: uppercase; color: var(--lime-heading); margin-bottom: 12px;
+}
+.testimonials .subtitle { font-size: 15px; color: var(--text-muted); margin-bottom: 48px; }
+.testimonial-row { display: flex; gap: 20px; overflow-x: auto; padding-bottom: 16px; }
+.testimonial-card {
+  background: var(--cream); color: var(--text-dark); border-radius: 16px;
+  padding: 36px 32px; min-width: 380px; flex-shrink: 0;
+}
+.testimonial-card p { font-size: 14px; line-height: 1.7; margin-bottom: 20px; }
+.testimonial-card .author { font-size: 13px; font-weight: 700; }
+
+/* ===== FAQS (mid green) ===== */
+.faqs {
+  background: var(--green-mid); padding: 100px 64px;
+  display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px;
+}
+.faqs-left h2 {
+  font-size: clamp(2rem, 3vw, 3rem); font-weight: 900;
+  text-transform: uppercase; color: var(--lime-heading);
+  font-style: italic; margin-bottom: 16px;
+}
+.faqs-left p { font-size: 15px; color: var(--text-muted); margin-bottom: 28px; line-height: 1.7; }
+.faq-item { border-bottom: 1px solid rgba(255,255,255,0.12); padding: 24px 0; }
+.faq-item:first-child { border-top: 1px solid rgba(255,255,255,0.12); }
+.faq-q {
+  font-size: 16px; font-weight: 700; color: var(--lime-heading); cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.faq-q::after { content: '\25BC'; font-size: 12px; transition: transform 0.3s; color: var(--lime); }
+.faq-a { display: none; padding-top: 16px; font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+.faq-item.open .faq-a { display: block; }
+.faq-item.open .faq-q::after { transform: rotate(180deg); }
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--green-dark); border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 64px 64px 32px;
+}
+.footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1.5fr; gap: 40px; margin-bottom: 48px; }
+.footer-logo {
+  font-family: 'Fraunces', serif; font-size: 2.2rem; font-weight: 900;
+  color: var(--lime-heading); text-transform: uppercase; line-height: 1;
+}
+.footer-col h4 { font-size: 15px; font-weight: 700; color: var(--cream); margin-bottom: 16px; }
+.footer-col a, .footer-col p {
+  display: block; font-size: 14px; color: var(--text-muted);
+  text-decoration: none; margin-bottom: 8px; line-height: 1.5;
+}
+.footer-col a:hover { color: var(--lime); }
+.footer-newsletter p { margin-bottom: 16px; }
+.footer-newsletter .form-row { display: flex; gap: 0; }
+.footer-newsletter input {
+  flex: 1; padding: 14px 20px; background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.15); border-right: none;
+  border-radius: 100px 0 0 100px; color: var(--cream);
+  font-size: 14px; font-family: 'Montserrat', sans-serif; outline: none;
+}
+.footer-newsletter input::placeholder { color: var(--text-muted); }
+.footer-newsletter button {
+  padding: 14px 24px; background: var(--lime); color: var(--text-dark);
+  border: none; border-radius: 0 100px 100px 0;
+  font-size: 13px; font-weight: 700; font-family: 'Montserrat', sans-serif;
+  cursor: pointer; text-transform: lowercase;
+}
+.success-message {
+  display: none; padding: 18px 32px; background: rgba(226,247,139,0.15);
+  border-radius: 100px; color: var(--lime); font-weight: 700; font-size: 14px; text-align: center;
+  margin-top: 12px;
+}
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06);
+  font-size: 13px; color: var(--text-muted);
+}
+.footer-bottom a { color: var(--text-muted); text-decoration: underline; text-underline-offset: 3px; margin-left: 24px; }
+.footer-bottom a:hover { color: var(--lime); }
+.social-icons { display: flex; gap: 16px; }
+.social-icons a { color: var(--text-muted); text-decoration: none; font-size: 18px; }
+.social-icons a:hover { color: var(--lime); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; padding: 0 16px 16px; }
+  .hero-card { min-height: 60vh; }
+  .offers, .tagline, .courts-section, .testimonials, .faqs { padding: 60px 24px; }
+  .offers-grid { grid-template-columns: 1fr; }
+  .tagline { flex-direction: column; gap: 40px; }
+  .geo-art { grid-template-columns: repeat(5, 36px); grid-template-rows: repeat(3, 36px); }
+  .geo-dot { width: 36px; height: 36px; }
+  .courts-section { flex-direction: column; gap: 40px; }
+  .ball { width: 240px; height: 240px; }
+  .ball-text { font-size: 2rem; }
+  .faqs { grid-template-columns: 1fr; gap: 32px; }
+  .testimonial-card { min-width: 300px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  footer { padding: 48px 24px 24px; }
+  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BANNER -->
+<div class="top-banner">
+  <div class="banner-track">
+    <span>Coming Soon</span><span>Join the Waitlist</span><span>Cambridge's First Indoor Padel</span><span>Founding Members Wanted</span><span>Coming Soon</span><span>Join the Waitlist</span><span>Cambridge's First Indoor Padel</span><span>Founding Members Wanted</span><span>Coming Soon</span><span>Join the Waitlist</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Padel Mill</a>
+  <div class="nav-right">
+    <a href="#signup" class="btn-pill btn-lime">Join Waitlist</a>
+    <a href="#offers" class="btn-pill btn-cream">What We Offer</a>
+    <div class="nav-links">
+      <a href="#offers">Activities</a>
+      <a href="#offers">Training</a>
+      <a href="#courts">Corporate</a>
+      <a href="#faqs">About</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-card" style="background-image: url('https://images.pexels.com/photos/32474981/pexels-photo-32474981.jpeg?auto=compress&cs=tinysrgb&w=1200');">
+    <div class="label">Indoor</div>
+    <h2>Cambridge</h2>
+    <div class="address">Central Cambridge, CB1 — Exact location coming soon</div>
+    <div class="btns">
+      <a href="#signup" class="btn-pill btn-lime">Join Waitlist</a>
+      <a href="#courts" class="text-link">Read more</a>
+    </div>
+  </div>
+  <div class="hero-card" style="background-image: url('https://images.pexels.com/photos/35248374/pexels-photo-35248374.jpeg?auto=compress&cs=tinysrgb&w=1200');">
+    <div class="label">Coming 2027</div>
+    <h2>Padel Mill</h2>
+    <div class="address">Cambridge's first dedicated indoor padel facility</div>
+    <div class="btns">
+      <a href="#signup" class="btn-pill btn-lime">Get Early Access</a>
+      <a href="#offers" class="text-link">Read more</a>
+    </div>
+  </div>
+</section>
+
+<!-- OFFERS -->
+<section class="offers" id="offers">
+  <h2>Padel Mill Offers</h2>
+  <p class="subtitle">Training, activities, tournaments, and events for all levels — for companies and individuals alike.</p>
+  <div class="offers-grid">
+    <div class="offer-card">
+      <div class="offer-img" style="background-image: url('https://images.pexels.com/photos/35248254/pexels-photo-35248254.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
+      <div class="offer-body">
+        <h3>Trainings</h3>
+        <div class="offer-sub">Team Training, Private Training & Junior Training</div>
+        <p>Training is the best way to get into padel or take your game to the next level. We offer sessions for all ages and levels.</p>
+      </div>
+    </div>
+    <div class="offer-card">
+      <div class="offer-img" style="background-image: url('https://images.pexels.com/photos/35248383/pexels-photo-35248383.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
+      <div class="offer-body">
+        <h3>Events</h3>
+        <div class="offer-sub">Events for both business and private</div>
+        <p>Whether you are 4 or 100 people, we can help with your event. Corporate team building, birthday parties, and private hires.</p>
+      </div>
+    </div>
+    <div class="offer-card">
+      <div class="offer-img" style="background-image: url('https://images.pexels.com/photos/35248405/pexels-photo-35248405.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
+      <div class="offer-body">
+        <h3>Activities</h3>
+        <div class="offer-sub">Leaderboard, Americano, Mexicano</div>
+        <p>Just show up and we take care of the rest. Regular social tournaments and an internal league so you always have someone to play.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TAGLINE -->
+<section class="tagline">
+  <div class="tagline-text">
+    <h2>Where the<br>City Meets</h2>
+    <p>Meetings, activities, and great experiences — Padel Mill is the place where Cambridge comes together.</p>
+  </div>
+  <div class="tagline-graphic">
+    <div class="geo-art">
+      <div class="geo-dot g1"></div><div class="geo-dot g2"></div><div class="geo-dot g3"></div><div class="geo-dot g1"></div><div class="geo-dot g4"></div><div class="geo-dot g2"></div><div class="geo-dot g3"></div>
+      <div class="geo-dot g2"></div><div class="geo-dot g3"></div><div class="geo-dot g1"></div><div class="geo-dot g4"></div><div class="geo-dot g2"></div><div class="geo-dot g1"></div><div class="geo-dot g3"></div>
+      <div class="geo-dot g3"></div><div class="geo-dot g1"></div><div class="geo-dot g4"></div><div class="geo-dot g2"></div><div class="geo-dot g3"></div><div class="geo-dot g4"></div><div class="geo-dot g1"></div>
+      <div class="geo-dot g4"></div><div class="geo-dot g2"></div><div class="geo-dot g1"></div><div class="geo-dot g3"></div><div class="geo-dot g1"></div><div class="geo-dot g2"></div><div class="geo-dot g4"></div>
+    </div>
+  </div>
+</section>
+
+<!-- COURTS / BALL -->
+<section class="courts-section" id="courts">
+  <div class="courts-ball">
+    <div class="ball"><div class="ball-text">Padel<br>Mill</div></div>
+  </div>
+  <div class="courts-info">
+    <h2>Indoor Padel Courts in Cambridge</h2>
+    <p>Book your court at Cambridge's first dedicated indoor padel facility. Premium courts with 8-metre ceilings, professional lighting, and all-weather play — right near the city centre.</p>
+    <div class="btns">
+      <a href="#signup" class="btn-pill btn-lime">Join Waitlist</a>
+      <a href="#faqs" class="btn-pill btn-outline-cream">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <h2>What Players Say About Padel</h2>
+  <p class="subtitle">Padel is taking the UK by storm — here's why people love it</p>
+  <div class="testimonial-row">
+    <div class="testimonial-card">
+      <p>I picked up a padel racket for the first time six months ago and I'm completely hooked. It's social, fast, and you can have a proper game from day one. Way more accessible than tennis.</p>
+      <div class="author">Sarah M.</div>
+    </div>
+    <div class="testimonial-card">
+      <p>We've been doing weekly padel sessions with the office team. Best team activity we've tried — everyone can play regardless of ability and it's properly fun.</p>
+      <div class="author">James K.</div>
+    </div>
+    <div class="testimonial-card">
+      <p>Having played padel across Spain and Denmark, Cambridge is crying out for a proper indoor facility. The outdoor courts are great but you lose half the year to weather.</p>
+      <div class="author">Tom R.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQS -->
+<section class="faqs" id="faqs">
+  <div class="faqs-left">
+    <h2>FAQs</h2>
+    <p>Here you can get answers to some of the most frequently asked questions.</p>
+    <a href="mailto:hello@padelmill.co.uk" class="btn-pill btn-lime">Contact us</a>
+  </div>
+  <div class="faqs-right">
+    <div class="faq-item">
+      <div class="faq-q">What is padel?</div>
+      <div class="faq-a">Padel is a racquet sport that combines elements of tennis and squash. It's played in doubles on an enclosed court about a third of the size of a tennis court. The walls are in play, making rallies longer and more fun. It's easy to learn and incredibly social.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">When will Padel Mill open?</div>
+      <div class="faq-a">We're targeting 2027 for opening. We're currently securing a site near Cambridge city centre and working through the planning process. Join the waitlist to get updates and founding member pricing.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Do you offer training?</div>
+      <div class="faq-a">Yes — we'll offer group sessions, private coaching, junior programmes, and a structured academy for all levels from complete beginners to competitive players.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Can events be hosted at Padel Mill?</div>
+      <div class="faq-a">Absolutely. We'll offer corporate team building, private event hire, birthday parties, and company leagues. Whether you're 4 or 100 people, we can help organise your event.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Where will you be located?</div>
+      <div class="faq-a">We're securing a warehouse space within 2 miles of Cambridge city centre, close to the station and the science parks. Exact location will be confirmed soon — join the waitlist for updates.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="signup">
+  <div class="footer-grid">
+    <div><div class="footer-logo">Padel<br>Mill</div></div>
+    <div class="footer-col">
+      <h4>Opening hours</h4>
+      <p><strong>Cambridge</strong></p>
+      <p>Coming 2027</p>
+      <p>7 days a week</p>
+      <p>07:00 – 23:00</p>
+    </div>
+    <div class="footer-col">
+      <h4>Bookings</h4>
+      <a href="#signup">Join Waitlist</a>
+      <a href="#offers">Activities</a>
+      <a href="#offers">Training</a>
+      <a href="#offers">Book event</a>
+    </div>
+    <div class="footer-col">
+      <h4>Information</h4>
+      <a href="#faqs">FAQs</a>
+      <a href="mailto:hello@padelmill.co.uk">Contact Us</a>
+      <a href="mailto:hello@padelmill.co.uk">hello@padelmill.co.uk</a>
+    </div>
+    <div class="footer-col footer-newsletter">
+      <h4>Subscribe to our newsletter</h4>
+      <p>Receive news about our opening, tournaments, events, and founding member offers.</p>
+      <form class="form-row" onsubmit="handleSignup(event, this)">
+        <input type="email" placeholder="Enter email" required>
+        <button type="submit">register</button>
+      </form>
+      <div class="success-message" id="footer-success">You're on the list!</div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Padel Mill Cambridge</span>
+    <div><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
+    <div class="social-icons">
+      <a href="#">Fb</a><a href="#">Ig</a><a href="#">Li</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function handleSignup(e, form) {
+  e.preventDefault();
+  console.log('Signup:', form.querySelector('input[type="email"]').value);
+  form.style.display = 'none';
+  document.getElementById('footer-success').style.display = 'block';
+}
+document.querySelectorAll('.faq-q').forEach(function(q) {
+  q.addEventListener('click', function() { this.parentElement.classList.toggle('open'); });
+});
+</script>
+</body>
+</html>
