@@ -64,6 +64,18 @@
 </script>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Fraunces:wght@700;800;900&display=swap" rel="stylesheet">
+
+<!-- Google Analytics 4 — REPLACE G-XXXXXXXXXX with your Measurement ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX', {
+    'anonymize_ip': true,
+    'cookie_flags': 'SameSite=None;Secure'
+  });
+</script>
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -380,7 +392,7 @@ footer {
 <nav>
   <a href="#" class="nav-logo">Padel Mill</a>
   <div class="nav-right">
-    <a href="#signup" class="btn-pill btn-lime">Join Waitlist</a>
+    <a href="#" class="btn-pill btn-lime" data-tally-open="ODBlWK" data-tally-layout="modal" data-tally-width="560" data-tally-emoji-text="🎾" data-tally-emoji-animation="wave">Join Waitlist</a>
     <a href="#offers" class="btn-pill btn-cream">What We Offer</a>
     <div class="nav-links">
       <a href="#offers">Activities</a>
@@ -398,7 +410,7 @@ footer {
     <h2>Cambridge</h2>
     <div class="address">Central Cambridge, CB1 — Rain or shine, 7 days a week</div>
     <div class="btns">
-      <a href="#signup" class="btn-pill btn-lime">Join Waitlist</a>
+      <a href="#" class="btn-pill btn-lime" data-tally-open="ODBlWK" data-tally-layout="modal" data-tally-width="560" data-tally-emoji-text="🎾" data-tally-emoji-animation="wave">Join Waitlist</a>
       <a href="#courts" class="text-link">Read more</a>
     </div>
   </div>
@@ -407,7 +419,7 @@ footer {
     <h2>Padel Mill</h2>
     <div class="address">Premium indoor courts — no more cancelled games</div>
     <div class="btns">
-      <a href="#signup" class="btn-pill btn-lime">Get Early Access</a>
+      <a href="#" class="btn-pill btn-lime" data-tally-open="ODBlWK" data-tally-layout="modal" data-tally-width="560" data-tally-emoji-text="🎾" data-tally-emoji-animation="wave">Get Early Access</a>
       <a href="#offers" class="text-link">Read more</a>
     </div>
   </div>
@@ -470,7 +482,7 @@ footer {
     <h2>Indoor Padel Courts in Cambridge</h2>
     <p>Cambridge has outdoor padel courts — but you lose half the year to British weather. Padel Mill changes that. Purpose-built indoor courts with 8-metre ceilings, professional LED lighting, and climate-controlled play 365 days a year. No cancellations, no excuses.</p>
     <div class="btns">
-      <a href="#signup" class="btn-pill btn-lime">Join Waitlist</a>
+      <a href="#" class="btn-pill btn-lime" data-tally-open="ODBlWK" data-tally-layout="modal" data-tally-width="560" data-tally-emoji-text="🎾" data-tally-emoji-animation="wave">Join Waitlist</a>
       <a href="#faqs" class="btn-pill btn-outline-cream">Learn More</a>
     </div>
   </div>
@@ -540,7 +552,7 @@ footer {
     </div>
     <div class="footer-col">
       <h4>Bookings</h4>
-      <a href="#signup">Join Waitlist</a>
+      <a href="#" data-tally-open="ODBlWK" data-tally-layout="modal" data-tally-width="560">Join Waitlist</a>
       <a href="#offers">Activities</a>
       <a href="#offers">Training</a>
       <a href="#offers">Book event</a>
@@ -554,11 +566,7 @@ footer {
     <div class="footer-col footer-newsletter">
       <h4>Subscribe to our newsletter</h4>
       <p>Receive news about our opening, tournaments, events, and founding member offers.</p>
-      <form class="form-row" onsubmit="handleSignup(event, this)">
-        <input type="email" placeholder="Enter email" required>
-        <button type="submit">register</button>
-      </form>
-      <div class="success-message" id="footer-success">You're on the list!</div>
+      <a href="#" class="btn-pill btn-lime" data-tally-open="ODBlWK" data-tally-layout="modal" data-tally-width="560" style="display:inline-block; margin-top:8px;">Join Waitlist</a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -570,15 +578,44 @@ footer {
   </div>
 </footer>
 
+<!-- Tally embed for waitlist popup -->
+<script async src="https://tally.so/widgets/embed.js"></script>
+
 <script>
-function handleSignup(e, form) {
-  e.preventDefault();
-  console.log('Signup:', form.querySelector('input[type="email"]').value);
-  form.style.display = 'none';
-  document.getElementById('footer-success').style.display = 'block';
-}
+// FAQ accordion
 document.querySelectorAll('.faq-q').forEach(function(q) {
   q.addEventListener('click', function() { this.parentElement.classList.toggle('open'); });
+});
+
+// Track Tally events in GA4
+window.addEventListener('message', function(e) {
+  if (typeof e.data !== 'string') return;
+  try {
+    var msg = JSON.parse(e.data);
+    if (!msg || !msg.event) return;
+
+    // Popup opened — track as funnel step
+    if (msg.event === 'Tally.PopupOpened' && typeof gtag === 'function') {
+      gtag('event', 'waitlist_form_opened', {
+        'form_id': msg.payload && msg.payload.formId,
+        'event_category': 'engagement'
+      });
+    }
+
+    // Form submitted — primary conversion event
+    if (msg.event === 'Tally.FormSubmitted' && typeof gtag === 'function') {
+      gtag('event', 'waitlist_signup', {
+        'form_id': msg.payload && msg.payload.formId,
+        'event_category': 'conversion',
+        'value': 1
+      });
+      // Also fire standard GA4 generate_lead event (recognised by GA4 as a conversion)
+      gtag('event', 'generate_lead', {
+        'currency': 'GBP',
+        'value': 1
+      });
+    }
+  } catch(err) { /* ignore non-JSON messages */ }
 });
 </script>
 </body>
